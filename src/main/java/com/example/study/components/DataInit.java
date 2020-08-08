@@ -24,6 +24,7 @@ public class DataInit {
     // PRIVATE METHODS //
     private void initUserData() {
         User user = new User();
+        user.setId(1L);
         user.setUsername("vinodjohn");
         user.setPassword("123456");
         users.add(user);
