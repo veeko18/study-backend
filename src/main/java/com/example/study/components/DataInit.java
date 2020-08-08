@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Data Init component
@@ -16,8 +14,6 @@ import java.util.List;
  */
 @Component
 public class DataInit {
-    public static final List<User> users = new ArrayList<>();
-
     @Autowired
     private UserService userService;
 
