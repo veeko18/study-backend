@@ -2,25 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Study App-Home</title>
+    <title>Study App-Signup</title>
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
-    <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Welcome to Study app!</h1>
-
-        <div class="alert alert-success" role="alert" th:if="${isLoggedIn}">
-            <span th:text="${message}"></span>
-            <a class="btn btn-warning" href="/user" role="button">User list</a>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">User list</h1>
+            <a class="btn btn-warning" href="/" role="button">Home</a>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user: ${users}">
+                    <th scope="row" th:text="${user.id}"></th>
+                    <td th:text="${user.username}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-
-        <a class="btn btn-primary" href="/login" role="button" th:if="${!isLoggedIn}">Login</a>
-        <a class="btn btn-primary" href="/signup" role="button" th:if="${!isLoggedIn}">Signup</a>
     </div>
 </div>
-
 
 <script crossorigin="anonymous"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -2,6 +2,7 @@ package com.example.study.services;
 
 import com.example.study.models.User;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -34,4 +35,11 @@ public interface UserService {
      * @return Optional of user
      */
     Optional<User> findByUsernameAndPassword(String username, String password);
+
+    /**
+     * To get all users
+     *
+     * @return list of users
+     */
+    List<User> getAllUsers();
 }
