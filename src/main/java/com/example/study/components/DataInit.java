@@ -1,5 +1,6 @@
 package com.example.study.components;
 
+import com.example.study.models.School;
 import com.example.study.models.User;
 import com.example.study.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class DataInit {
     @PostConstruct
     public void initData() {
         initUserData();
+        initSchoolData();
     }
 
     // PRIVATE METHODS //
@@ -28,5 +30,12 @@ public class DataInit {
         user.setUsername("vinodjohn");
         user.setPassword("123456");
         userService.createUser(user);
+    }
+
+    private void initSchoolData() {
+        School school = new School();
+        school.setName("Tallinn International school");
+        school.setCity("Tallinn");
+        school.setPhone("94856735");
     }
 }

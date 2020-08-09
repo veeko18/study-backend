@@ -18,7 +18,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public boolean isLoginValid(User user) {
-        return userRepository.findAll().stream()
-                .anyMatch(user1 -> user1.getUsername().equals(user.getUsername()) && user1.getPassword().equals(user.getPassword()));
+        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).isPresent();
     }
 }
