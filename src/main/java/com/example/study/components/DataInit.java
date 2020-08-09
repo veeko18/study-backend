@@ -30,7 +30,7 @@ public class DataInit {
         user.setUsername("vinodjohn@sda.com");
         user.setPassword("123456");
 
-        if (!userService.findUserByUsername(user.getUsername())) {
+        if (userService.findUserByUsername(user.getUsername()).isEmpty()) {
             userService.createUser(user);
         }
     }

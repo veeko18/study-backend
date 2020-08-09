@@ -1,8 +1,8 @@
 package com.example.study.services.implementations;
 
 import com.example.study.models.Login;
-import com.example.study.repositories.UserRepository;
 import com.example.study.services.LoginService;
+import com.example.study.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginServiceImpl implements LoginService {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Override
     public boolean isLoginValid(Login login) {
-        return userRepository.findByUsernameAndPassword(login.getUsername(), login.getPassword()).isPresent();
+        return userService.findByUsernameAndPassword(login.getUsername(), login.getPassword()).isPresent();
     }
 }
