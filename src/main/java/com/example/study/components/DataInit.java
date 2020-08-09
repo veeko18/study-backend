@@ -29,7 +29,10 @@ public class DataInit {
         User user = new User();
         user.setUsername("vinodjohn@sda.com");
         user.setPassword("123456");
-        userService.createUser(user);
+
+        if (!userService.findUserByUsername(user.getUsername())) {
+            userService.createUser(user);
+        }
     }
 
     private void initSchoolData() {
