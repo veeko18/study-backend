@@ -26,3 +26,4 @@ public class User {
     @OneToMany
     private List<Course> courses;
 }
+
