@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Study App</title>
@@ -10,7 +10,12 @@
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
         <h1 class="display-4">Welcome to Study app!</h1>
-        <a class="btn btn-primary" href="/login" role="button">Login</a>
+
+        <div class="alert alert-success" role="alert" th:if="${isLoggedIn}">
+            <span th:text="${message}"></span>
+        </div>
+
+        <a class="btn btn-primary" href="/login" role="button" th:if="${!isLoggedIn}">Login</a>
     </div>
 </div>
 

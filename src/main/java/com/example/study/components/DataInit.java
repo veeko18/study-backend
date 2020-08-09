@@ -27,7 +27,7 @@ public class DataInit {
     // PRIVATE METHODS //
     private void initUserData() {
         User user = new User();
-        user.setUsername("vinodjohn");
+        user.setUsername("vinodjohn@sda.com");
         user.setPassword("123456");
         userService.createUser(user);
     }
