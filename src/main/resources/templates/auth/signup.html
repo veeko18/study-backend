@@ -2,24 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Study App-Login</title>
+    <title>Study App-Signup</title>
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Login</h1>
+        <h1 class="display-4">Signup</h1>
         <a class="btn btn-warning" href="/" role="button">Home</a>
 
         <div class="alert alert-danger" role="alert" th:if="${messageType} == 'error'">
             <span th:text="${message}"></span>
         </div>
 
-        <form action="#" method="post" th:action="@{/login}" th:object="${login}">
+        <form action="#" method="post" th:action="@{/signup}" th:object="${user}">
             <div class="form-group">
                 <label for="username">Email address</label>
                 <input class="form-control" id="username" required th:field="*{username}" type="email">
+                <small class="form-text text-muted" id="emailHelp">We'll never share your email with anyone
+                    else.</small>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
