@@ -18,12 +18,14 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Username</th>
+                    <th scope="col">School</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="user: ${users}">
                     <th scope="row" th:text="${user.id}"></th>
                     <td th:text="${user.username}"></td>
+                    <td th:text="${user.school.name}"></td>
                 </tr>
                 </tbody>
             </table>

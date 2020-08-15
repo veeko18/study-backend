@@ -16,7 +16,11 @@
             <span th:text="${message}"></span>
         </div>
 
-        <form action="#" method="post" th:action="@{/signup}" th:object="${user}">
+        <div class="alert alert-danger" role="alert" th:if="${schools.size() == 0}">
+            <span>Signup Unavailable!</span>
+        </div>
+
+        <form action="#" method="post" th:action="@{/signup}" th:if="${schools.size() > 0}" th:object="${user}">
             <div class="form-group">
                 <label for="username">Email address</label>
                 <input class="form-control" id="username" required th:field="*{username}" type="email">
@@ -27,6 +31,11 @@
                 <label for="password">Password</label>
                 <input class="form-control" id="password" required th:field="*{password}" type="password">
             </div>
+
+            <select class="custom-select" th:field="*{school.id}">
+                <option th:each="school: ${schools}" th:text="${school.name}" th:value="${school.id}"></option>
+            </select>
+            <p></p>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </div>

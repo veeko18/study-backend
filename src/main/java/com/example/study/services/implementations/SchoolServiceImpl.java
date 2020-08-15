@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of school service
@@ -28,6 +29,13 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public List<School> getAllSchools() {
         return schoolRepository.findAll();
+    }
+
+    @Override
+    public List<School> getActiveSchools() {
+        return getAllSchools().stream()
+                .filter(School::isActive)
+                .collect(Collectors.toList());
     }
 
     @Override

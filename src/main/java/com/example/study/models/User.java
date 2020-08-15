@@ -19,7 +19,7 @@ public class User {
     private String username;
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private School school;
 
 /*

@@ -26,6 +26,13 @@ public interface SchoolService {
     List<School> getAllSchools();
 
     /**
+     * To get list of active schools
+     *
+     * @return list of schools
+     */
+    List<School> getActiveSchools();
+
+    /**
      * To find school by name
      *
      * @param name School name

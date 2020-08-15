@@ -1,9 +1,11 @@
 package com.example.study.controllers;
 
 import com.example.study.models.User;
+import com.example.study.services.SchoolService;
 import com.example.study.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +23,14 @@ public class SignupController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SchoolService schoolService;
+
     @GetMapping
     public String showSignupPage(@ModelAttribute("user") User user, @ModelAttribute("message") String message,
-                                 @ModelAttribute("messageType") String messageType) {
+                                 @ModelAttribute("messageType") String messageType, Model model) {
+
+        model.addAttribute("schools", schoolService.getAllSchools());
         return "auth/signup";
     }
 
