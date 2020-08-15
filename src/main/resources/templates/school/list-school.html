@@ -43,6 +43,14 @@
                            th:if="${school.isActive()}">
                             Delete
                         </a>
+                        <a class="btn btn-success" role="button" th:href="@{/school/restore/{id}(id=${school.id})}"
+                           th:if="${!school.isActive()}">
+                            Restore
+                        </a>
+                        <a class="btn btn-danger" role="button" th:href="@{/school/full-delete/{id}(id=${school.id})}"
+                           th:if="${!school.isActive()}">
+                            Delete completely
+                        </a>
                     </td>
                 </tr>
                 </tbody>

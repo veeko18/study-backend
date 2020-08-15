@@ -52,4 +52,19 @@ public class SchoolServiceImpl implements SchoolService {
             updateSchool(school);
         });
     }
+
+    @Override
+    public void fullDeleteSchoolById(Long id) {
+        findSchoolById(id).ifPresent(school -> {
+            schoolRepository.delete(school);
+        });
+    }
+
+    @Override
+    public void restoreSchoolById(Long id) {
+        findSchoolById(id).ifPresent(school -> {
+            school.setActive(true);
+            updateSchool(school);
+        });
+    }
 }

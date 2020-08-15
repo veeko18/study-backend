@@ -54,4 +54,18 @@ public interface SchoolService {
      * @param id School id
      */
     void deleteSchoolById(Long id);
+
+    /**
+     * To delete school from database completely by id
+     *
+     * @param id School id
+     */
+    void fullDeleteSchoolById(Long id);
+
+    /**
+     * To restore school by id
+     *
+     * @param id School id
+     */
+    void restoreSchoolById(Long id);
 }

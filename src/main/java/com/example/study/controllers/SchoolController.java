@@ -84,4 +84,16 @@ public class SchoolController {
         schoolService.deleteSchoolById(id);
         return "redirect:/school";
     }
+
+    @GetMapping("/full-delete/{id}")
+    public String fullDeleteSchool(@PathVariable Long id) {
+        schoolService.fullDeleteSchoolById(id);
+        return "redirect:/school";
+    }
+
+    @GetMapping("/restore/{id}")
+    public String restoreSchool(@PathVariable Long id) {
+        schoolService.restoreSchoolById(id);
+        return "redirect:/school";
+    }
 }
