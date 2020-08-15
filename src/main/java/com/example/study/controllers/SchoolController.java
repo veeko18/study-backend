@@ -5,11 +5,10 @@ import com.example.study.services.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
 
 /**
  * Controller to handle School requests
@@ -51,16 +50,22 @@ public class SchoolController {
         return "school/list-school";
     }
 
-    @GetMapping("/update")
-    public String showUpdateSchoolPage(@ModelAttribute("school") School school,
+    @GetMapping("/update/{id}")
+    public String showUpdateSchoolPage(@PathVariable("id") Long id, @ModelAttribute("school") School school,
                                        @ModelAttribute("message") String message,
                                        @ModelAttribute("messageType") String messageType) {
+        Optional<School> optionalSchool = schoolService.findSchoolById(id);
+
+        if (optionalSchool.isPresent()) {
+            school = optionalSchool.get();
+        }
+
         return "school/update-school";
     }
 
-    @PostMapping("/update")
-    public String updateSchool(School school, RedirectAttributes redirectAttributes) {
-        boolean isSchoolExists = schoolService.findSchoolById(school.getId()).isPresent();
+    @PostMapping("/update/{id}")
+    public String updateSchool(@PathVariable("id") Long id, School school, RedirectAttributes redirectAttributes) {
+        boolean isSchoolExists = schoolService.findSchoolById(id).isPresent();
 
         if (isSchoolExists) {
             schoolService.updateSchool(school);
