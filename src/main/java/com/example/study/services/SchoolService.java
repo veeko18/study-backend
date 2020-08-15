@@ -47,4 +47,11 @@ public interface SchoolService {
      * @param school School
      */
     void updateSchool(School school);
+
+    /**
+     * To delete school by id
+     *
+     * @param id School id
+     */
+    void deleteSchoolById(Long id);
 }

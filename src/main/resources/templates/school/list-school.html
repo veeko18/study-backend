@@ -14,7 +14,11 @@
             <a class="btn btn-warning" href="/" role="button">Home</a>
             <a class="btn btn-warning" href="/school/create" role="button">Add school</a>
             <p></p>
-            <table class="table table-dark">
+            <div class="alert alert-info" role="alert" th:if="${schools.size() == 0}">
+                <span>No schools found!</span>
+            </div>
+
+            <table class="table table-dark" th:if="${schools.size() > 0}">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -31,8 +35,13 @@
                     <td th:text="${school.city}"></td>
                     <td th:text="${school.phone}"></td>
                     <td>
-                        <a class="btn btn-primary" role="button" th:href="@{/school/update/{id}(id=${school.id})}">
+                        <a class="btn btn-primary" role="button" th:href="@{/school/update/{id}(id=${school.id})}"
+                           th:if="${school.isActive()}">
                             Update
+                        </a>
+                        <a class="btn btn-danger" role="button" th:href="@{/school/delete/{id}(id=${school.id})}"
+                           th:if="${school.isActive()}">
+                            Delete
                         </a>
                     </td>
                 </tr>

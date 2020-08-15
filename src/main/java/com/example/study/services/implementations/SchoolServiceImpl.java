@@ -21,6 +21,7 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public void createSchool(School school) {
+        school.setActive(true);
         schoolRepository.save(school);
     }
 
@@ -42,5 +43,13 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public void updateSchool(School school) {
         schoolRepository.saveAndFlush(school);
+    }
+
+    @Override
+    public void deleteSchoolById(Long id) {
+        findSchoolById(id).ifPresent(school -> {
+            school.setActive(false);
+            updateSchool(school);
+        });
     }
 }
