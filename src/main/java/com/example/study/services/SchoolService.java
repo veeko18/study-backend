@@ -26,10 +26,25 @@ public interface SchoolService {
     List<School> getAllSchools();
 
     /**
-     * To find school by school name
+     * To find school by name
      *
      * @param name School name
      * @return optional of school
      */
     Optional<School> findSchoolByName(String name);
+
+    /**
+     * To find school by id
+     *
+     * @param id School id
+     * @return optional of school
+     */
+    Optional<School> findSchoolById(Long id);
+
+    /**
+     * To update an existing school
+     *
+     * @param school School
+     */
+    void updateSchool(School school);
 }

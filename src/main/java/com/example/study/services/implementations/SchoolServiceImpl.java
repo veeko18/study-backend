@@ -33,4 +33,14 @@ public class SchoolServiceImpl implements SchoolService {
     public Optional<School> findSchoolByName(String name) {
         return schoolRepository.findByName(name);
     }
+
+    @Override
+    public Optional<School> findSchoolById(Long id) {
+        return schoolRepository.findById(id);
+    }
+
+    @Override
+    public void updateSchool(School school) {
+        schoolRepository.saveAndFlush(school);
+    }
 }

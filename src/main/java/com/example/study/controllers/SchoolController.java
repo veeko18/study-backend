@@ -30,7 +30,7 @@ public class SchoolController {
     }
 
     @PostMapping
-    public String postSchool(School school, RedirectAttributes redirectAttributes) {
+    public String createSchool(School school, RedirectAttributes redirectAttributes) {
         boolean isSchoolExists = schoolService.findSchoolByName(school.getName()).isPresent();
 
         if (!isSchoolExists) {
@@ -49,5 +49,28 @@ public class SchoolController {
     public String showSchoolList(Model model) {
         model.addAttribute("schools", schoolService.getAllSchools());
         return "school/list-school";
+    }
+
+    @GetMapping("/update")
+    public String showUpdateSchoolPage(@ModelAttribute("school") School school,
+                                       @ModelAttribute("message") String message,
+                                       @ModelAttribute("messageType") String messageType) {
+        return "school/update-school";
+    }
+
+    @PostMapping("/update")
+    public String updateSchool(School school, RedirectAttributes redirectAttributes) {
+        boolean isSchoolExists = schoolService.findSchoolById(school.getId()).isPresent();
+
+        if (isSchoolExists) {
+            schoolService.updateSchool(school);
+            redirectAttributes.addFlashAttribute("message", "School updated successfully!");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+            return "redirect:/school";
+        } else {
+            redirectAttributes.addFlashAttribute("message", "School not found!");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "redirect:/school/create";
+        }
     }
 }
