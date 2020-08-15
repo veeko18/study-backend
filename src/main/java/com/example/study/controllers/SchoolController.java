@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Optional;
-
 /**
  * Controller to handle School requests
  *
@@ -51,13 +49,12 @@ public class SchoolController {
     }
 
     @GetMapping("/update/{id}")
-    public String showUpdateSchoolPage(@PathVariable("id") Long id, @ModelAttribute("school") School school,
+    public String showUpdateSchoolPage(@PathVariable("id") Long id, Model model,
+                                       @RequestParam(value = "school", required = false) School school,
                                        @ModelAttribute("message") String message,
                                        @ModelAttribute("messageType") String messageType) {
-        Optional<School> optionalSchool = schoolService.findSchoolById(id);
-
-        if (optionalSchool.isPresent()) {
-            school = optionalSchool.get();
+        if (school == null) {
+            schoolService.findSchoolById(id).ifPresent(foundSchool -> model.addAttribute("school", foundSchool));
         }
 
         return "school/update-school";
