@@ -1,6 +1,7 @@
 package com.example.study.controllers;
 
 import com.example.study.models.User;
+import com.example.study.services.AuthorityService;
 import com.example.study.services.SchoolService;
 import com.example.study.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,15 @@ public class SignupController {
     @Autowired
     private SchoolService schoolService;
 
+    @Autowired
+    private AuthorityService authorityService;
+
     @GetMapping
     public String showSignupPage(@ModelAttribute("user") User user, @ModelAttribute("message") String message,
                                  @ModelAttribute("messageType") String messageType, Model model) {
 
         model.addAttribute("schools", schoolService.getAllSchools());
+        model.addAttribute("authorities", authorityService.findAllAuthorities());
         return "auth/signup";
     }
 
