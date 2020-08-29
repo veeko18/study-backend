@@ -5,7 +5,9 @@ import com.example.study.repositories.SchoolRepository;
 import com.example.study.services.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,12 +18,13 @@ import java.util.stream.Collectors;
  * @author Vinod John
  */
 @Service
+@Transactional
 public class SchoolServiceImpl implements SchoolService {
     @Autowired
     private SchoolRepository schoolRepository;
 
     @Override
-    public void createSchool(School school) {
+    public void createSchool(@Valid School school) {
         school.setActive(true);
         schoolRepository.save(school);
     }

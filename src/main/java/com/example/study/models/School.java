@@ -1,5 +1,7 @@
 package com.example.study.models;
 
+import com.example.study.utils.validation.ValidSchool;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +13,7 @@ import javax.persistence.Id;
  * @author Vinod John
  */
 @Entity
-/*@ValidSchool*/
+@ValidSchool
 public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
